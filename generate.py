@@ -21,7 +21,7 @@ def wr(dirname, basename, contents):
 def gen(system, version, sha256sum):
     dirname = "{}-{}".format(system, version)
     os.makedirs(dirname, exist_ok=True)
-    t = open("Dockerfile.{}".format(system)).read()
+    t = open("{}.dockerfile".format(system)).read()
     wr(dirname, "Dockerfile", t.replace("{{version}}", version))
     wr(dirname, "checksum", "{}  mg.tar.gz\n".format(sha256sum))
     print("docker build -t mg:{} {}".format(dirname, dirname))
